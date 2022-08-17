@@ -5,7 +5,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { presetUno, transformerDirectives } from 'unocss'
 import presetRemToPx from '@unocss/preset-rem-to-px'
-import eslintPlugin from 'vite-plugin-eslint' // 引入
+import eslintPlugin from 'vite-plugin-eslint'
+import PostcssNested from 'postcss-nested'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -25,5 +26,15 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
+  },
+  css: {
+    postcss: {
+      plugins: [PostcssNested()],
+    },
+  },
+
+  server: {
+    port: 4000,
+    cors: true,
   },
 })

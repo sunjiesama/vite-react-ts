@@ -27,6 +27,8 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.30.1",
+    "postcss": "^8.4.16",
+    "postcss-nested": "^5.0.6",
     "prettier": "^2.7.1",
     "prettier-plugin-jsdoc": "^0.3.38",
     "typescript": "*",
