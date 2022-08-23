@@ -1,11 +1,7 @@
 import React from 'react'
 
 const Index: React.FC = () => {
-  return (
-    <main className="px-4">
-      <h2>Ex-2</h2>
-    </main>
-  )
+  return <h2>Ex-2</h2>
 }
 
 export default Index

@@ -3,7 +3,7 @@ import { Link, Outlet } from 'react-router-dom'
 
 const Index: React.FC = () => {
   return (
-    <main className="px-4">
+    <main>
       <h2>Invoices</h2>
       <Link to="/invoices/in-1">in-1</Link> | <Link to="/invoices/in-2">in-2</Link>
       <Outlet />
