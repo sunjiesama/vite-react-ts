@@ -1,5 +1,4 @@
 import path from 'path'
-
 import Unocss from 'unocss/vite'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
@@ -34,7 +33,7 @@ export default defineConfig({
   },
 
   server: {
-    port: 4000,
+    port: 4001,
     cors: true,
   },
 })
