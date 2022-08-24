@@ -1,31 +1,35 @@
 import React from 'react'
 import App from '../App'
-import NotFound from '../views/notFound'
+import NotFound from '../views/404NotFound'
+
 const routes: RenderRoutes[] = [
   {
     path: '/',
+    title: '首页',
     component: App,
+    hidden: true,
     children: [
       {
-        path: '/expenses',
-        component: React.lazy(async () => await import('@/views/expenses')),
-        children: [
-          { path: '/expenses/ex-1', component: React.lazy(async () => await import('@/views/ex-1')) },
-          { path: '/expenses/ex-2', component: React.lazy(async () => await import('@/views/ex-2')) },
-        ],
+        path: '/immer',
+        title: 'immer',
+        component: React.lazy(async () => await import('@/views/Immer/index')),
       },
       {
-        path: '/invoices',
-        component: React.lazy(async () => await import('@/views/invoices')),
-        children: [
-          { path: '/invoices/in-1', component: React.lazy(async () => await import('@/views/in-1')) },
-          { path: '/invoices/in-2', component: React.lazy(async () => await import('@/views/in-2')) },
-        ],
+        path: '/hooks',
+        title: 'hooks',
+        component: React.lazy(async () => await import('@/views/Hooks/index')),
+      },
+      {
+        path: '/echarts',
+        title: 'echarts',
+        component: React.lazy(async () => await import('@/views/Echarts/index')),
       },
     ],
   },
   {
     path: '*',
+    title: '404',
+    hidden: true,
     component: NotFound,
   },
 ]

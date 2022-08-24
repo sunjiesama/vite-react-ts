@@ -1,20 +1,17 @@
 import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import Sider from '@/layout/Sider'
+import Content from '@/layout/Content'
 
 const App: React.FC = () => {
   return (
-    <div>
-      <nav className="p-8">
-        <button className="btn btn-active btn-accent btn-sm">
-          <Link to="/invoices">Invoices</Link>
-        </button>
-
-        <button className="btn btn-active btn-accent btn-sm">
-          <Link to="/expenses">Expenses</Link>
-        </button>
-        <Outlet />
-      </nav>
-    </div>
+    <main className="grid grid-cols-9 h-full grid-row1">
+      <div className="col-span-1 bg-base-200 row-span-1">
+        <Sider />
+      </div>
+      <div className="col-span-8 bg-base-300  row-span-1">
+        <Content />
+      </div>
+    </main>
   )
 }
 
