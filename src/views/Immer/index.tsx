@@ -14,17 +14,20 @@ const Index: React.FC = () => {
     { learnName: 'Vue', done: false, title: 'learn Vue' },
     { learnName: 'Immer', done: false, title: 'learn Immer' },
   ])
-  const [Item, setItem] = useImmer<LearnItem>({
+
+  const [todoItem, setItem] = useImmer<LearnItem>({
     learnName: '',
     done: false,
     title: '',
   })
 
   const handleChangeLearnName = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setItem((draft) => {
-      draft.learnName = e.target.value
-      draft.title = `learn ${e.target.value}`
-    })
+    if (e.target.value !== '') {
+      setItem((draft) => {
+        draft.learnName = e.target.value
+        draft.title = `learn ${e.target.value}`
+      })
+    }
   }
 
   const handleLearn = (learnItem: LearnItem): void => {
@@ -37,22 +40,25 @@ const Index: React.FC = () => {
   }
 
   const handleAdd = (): void => {
-    setLearnList((draft) => {
-      draft.push(Item)
-    })
-    setItem((draft) => {
-      draft.learnName = ''
-      draft.title = ''
-    })
+    if (todoItem.learnName !== '') {
+      setLearnList((draft) => {
+        draft.push(todoItem)
+      })
+      setItem((draft) => {
+        draft.learnName = ''
+        draft.title = ''
+      })
+    }
   }
   return (
     <div className="w-64">
-      <div className="flex">
+      <h1 className="text-3xl my-4">useImmer </h1>
+      <div className="flex my-4">
         <input
           type="text"
           placeholder="Type here"
           className="input input-bordered input-sm w-full max-w-xs focus:outline-0 mr-4"
-          value={Item.learnName}
+          value={todoItem.learnName}
           onChange={handleChangeLearnName}
         />
         <button className="btn btn-accent btn-sm inline-block" onClick={handleAdd}>
@@ -67,12 +73,14 @@ const Index: React.FC = () => {
               type="checkbox"
               readOnly
               checked={i.done}
-              className="checkbox checkbox-accent  checkbox-sm"
+              className="checkbox checkbox-accent checkbox-sm"
               onChange={() => handleLearn(i)}
             />
           </label>
         </div>
       ))}
+      <h1 className="text-3xl my-4">useImmerReducer </h1>
+      <p>to be add...</p>
     </div>
   )
 }
