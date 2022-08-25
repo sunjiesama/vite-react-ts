@@ -1,7 +1,9 @@
 declare interface RenderRoutes {
-  path: string
-  title: string
+  key: string
+  label: string
   hidden?: boolean
   component: React.FC
   children?: RenderRoutes[]
+  default?: boolean
+  icon?: any
 }

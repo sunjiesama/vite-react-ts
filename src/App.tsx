@@ -1,25 +1,29 @@
-import React from 'react'
-import Sider from '@/layout/Sider'
-import Content from '@/layout/Content'
+import Main from '@/layout/Main'
+import Menu from '@/layout/Menu'
 import { Icon } from '@iconify/react'
+import { Layout } from 'antd'
+import React, { useState } from 'react'
+
+const { Header, Sider, Content } = Layout
 
 const App: React.FC = () => {
+  const [collapsed] = useState(false)
   return (
-    <main className="grid grid-cols-9 h-full grid-row1">
-      <div className="col-span-1 row-span-1 border-r-2 flex flex-col">
-        <Sider />
-        <div className="flex items-center justify-center py-4 ">
-          <label className="btn btn-sm btn-accent btn-circle swap swap-rotate">
-            <input type="checkbox" />
-            <Icon className="swap-off fill-current w-6 h-6" icon="material-symbols:close"></Icon>
-            <Icon className="swap-on fill-current  w-6 h-6" icon="ic:baseline-menu-open"></Icon>
-          </label>
-        </div>
-      </div>
-      <div className="col-span-8 row-span-1 overflow-auto">
-        <Content />
-      </div>
-    </main>
+    <Layout className="h-full">
+      <Sider trigger={null} collapsible collapsed={collapsed}>
+        <Menu />
+      </Sider>
+      <Layout>
+        <Header className="bg-white">
+          <div className="h-full flex items-center">
+            <Icon className="text-black h-8 w-8" icon="ion:social-snapchat-outline" />
+          </div>
+        </Header>
+        <Content>
+          <Main />
+        </Content>
+      </Layout>
+    </Layout>
   )
 }
 

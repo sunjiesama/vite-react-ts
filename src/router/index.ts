@@ -1,37 +1,40 @@
 import { lazy } from 'react'
 import App from '../App'
 import NotFound from '../views/404NotFound'
-
 const routes: RenderRoutes[] = [
   {
-    path: '/',
-    title: '首页',
+    key: '/',
+    label: '首页',
     component: App,
     hidden: true,
     children: [
       {
-        path: '/immer',
-        title: 'immer',
+        key: '/immer',
+        label: 'Immer',
         component: lazy(async () => await import('@/views/Immer/index')),
+
+        default: true,
       },
       {
-        path: '/hooks',
-        title: 'hooks',
+        key: '/hooks',
+        label: 'Hooks',
         component: lazy(async () => await import('@/views/Hooks/index')),
       },
       {
-        path: '/echarts',
-        title: 'echarts',
+        key: '/echarts',
+        label: 'Echarts',
         component: lazy(async () => await import('@/views/Echarts/index')),
+
         children: [
           {
-            path: '/echarts/lineCharts',
-            title: '折线图',
-            component: lazy(async () => await import('@/views/Echarts/LineCharts')),
+            key: '/echarts/BarCharts',
+            label: 'Bar',
+            component: lazy(async () => await import('@/views/Echarts/BarCharts')),
+            default: true,
           },
           {
-            path: '/echarts/pieCharts',
-            title: '饼图',
+            key: '/echarts/pieCharts',
+            label: 'Pie',
             component: lazy(async () => await import('@/views/Echarts/PieCharts')),
           },
         ],
@@ -39,8 +42,8 @@ const routes: RenderRoutes[] = [
     ],
   },
   {
-    path: '*',
-    title: '404',
+    key: '*',
+    label: '404',
     hidden: true,
     component: NotFound,
   },
