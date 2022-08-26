@@ -1,5 +1,6 @@
-import { GetUser } from '@/apis/index'
+import { GetUser } from '@/apis/user'
 import React, { useEffect } from 'react'
+
 const Index: React.FC = () => {
   useEffect(() => {
     void GetUser().then((res) => {

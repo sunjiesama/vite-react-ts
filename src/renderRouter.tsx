@@ -6,8 +6,8 @@ const Index = (routes: RenderRoutes[]): React.ReactElement => {
     if (R?.length === 0) return
     return R?.map((router) => (
       <Route
-        key={router.key}
-        path={router.key}
+        key={router.path}
+        path={router.path}
         element={
           <Suspense>
             <router.component />
