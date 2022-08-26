@@ -16,7 +16,7 @@ const Index = (): React.ReactElement<any, string | React.JSXElementConstructor<a
       onClick={handleClick}
       defaultSelectedKeys={[pathname]}
       items={routes[0].children}
-      theme="dark"
+      theme="light"
       mode="inline"
     />
   )

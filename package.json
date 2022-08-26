@@ -16,6 +16,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
     "react-transition-group": "^4.4.5",
+    "umi-request": "^1.4.0",
     "use-immer": "^0.7.0"
   },
   "devDependencies": {
@@ -36,6 +37,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.0.1",
     "eslint-plugin-react": "^7.31.0",
+    "msw": "^0.45.0",
     "postcss": "^8.4.16",
     "prettier": "^2.7.1",
     "prettier-plugin-jsdoc": "^0.3.38",
@@ -43,5 +45,8 @@
     "typescript": "*",
     "vite": "^3.0.9",
     "vite-plugin-eslint": "^1.8.1"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
