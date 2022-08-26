@@ -1,13 +1,4 @@
-import { rest } from 'msw'
+import Echarts from './modules/Echarts'
+import User from './modules/User'
 
-export const handlers = [
-  // Handles a GET /user request
-  rest.get('/user', (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json({
-        username: 'admin',
-      }),
-    )
-  }),
-]
+export const handlers = [...Echarts, ...User]
