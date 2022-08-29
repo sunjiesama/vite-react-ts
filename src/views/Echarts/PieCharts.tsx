@@ -1,10 +1,16 @@
-import React, { useEffect, useRef } from 'react'
 import * as echarts from 'echarts'
+import React, { useEffect, useRef } from 'react'
 
 const PieChart: React.FC = () => {
   const echartsRef = useRef<HTMLDivElement>(null)
   let myChart: echarts.EChartsType
   const option: echarts.EChartsOption = {
+    // 图表表头
+    title: {
+      text: 'Referer of a Website\n test',
+      subtext: 'Fake Data',
+      left: 'center',
+    },
     tooltip: {
       trigger: 'item',
       formatter: '{a} <br/>{b} : {c} ({d}%)',

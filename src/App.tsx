@@ -7,7 +7,7 @@ import React, { useState } from 'react'
 const { Header, Sider, Content } = Layout
 
 const App: React.FC = () => {
-  const [collapsed] = useState(false)
+  const [collapsed] = useState(true)
   return (
     <Layout className="h-full">
       <Sider trigger={null} collapsible collapsed={collapsed} className="bg-white">

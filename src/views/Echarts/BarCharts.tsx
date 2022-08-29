@@ -72,6 +72,9 @@ const ColumnChart: React.FC = () => {
               // 图表类型，设置为line时，将设置为折线图
               type: 'bar',
 
+              // 柱子的宽度
+              barWidth: 30,
+
               // 数据堆叠,同一名称的数据将被堆叠展示
               stack: v.type,
 
