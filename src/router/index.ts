@@ -72,6 +72,18 @@ const routes: RenderRoutes[] = [
           },
         ],
       },
+      {
+        path: '/map',
+        title: 'map',
+        icon: 'material-symbols:map',
+        component: lazy(async () => await import('@/views/Map/index')),
+      },
+      {
+        path: '/three',
+        title: 'map',
+        icon: 'logos:threejs',
+        component: lazy(async () => await import('@/views/Three/index')),
+      },
     ],
   },
   {
