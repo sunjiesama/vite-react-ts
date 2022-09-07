@@ -7,9 +7,7 @@ const Index: React.FC = () => {
   return (
     // <TransitionGroup>
     //   <CSSTransition key={location.key} classNames="page" timeout={300}>
-    <main className="p-4 w-full h-full">
-      <Outlet />
-    </main>
+    <Outlet />
     //   </CSSTransition>
     // </TransitionGroup>
   )

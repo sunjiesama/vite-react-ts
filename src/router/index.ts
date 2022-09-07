@@ -77,12 +77,26 @@ const routes: RenderRoutes[] = [
         title: 'map',
         icon: 'material-symbols:map',
         component: lazy(async () => await import('@/views/Map/index')),
+        children: [
+          {
+            path: '/map/base-demo',
+            title: 'baseDemo',
+            icon: false,
+            component: lazy(async () => await import('@/views/Map/baseMap')),
+          },
+        ],
       },
       {
         path: '/three',
-        title: 'map',
+        title: 'three',
         icon: 'logos:threejs',
         component: lazy(async () => await import('@/views/Three/index')),
+      },
+      {
+        path: '/unity3D',
+        title: 'unity3D',
+        icon: 'mdi:unity',
+        component: lazy(async () => await import('@/views/Unity/index')),
       },
     ],
   },
