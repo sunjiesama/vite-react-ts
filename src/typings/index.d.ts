@@ -7,3 +7,11 @@ declare interface RenderRoutes {
   default?: boolean
   icon: string | null | false
 }
+
+interface Window {
+  BMapGL: BMapGL
+  InitFinished: () => void
+  MouseEnterMark: (markEnum: string) => void
+  MouseExitMark: (markEnum: string) => void
+  SelectMark: (markEnum: string) => void
+}

@@ -41,10 +41,24 @@ const ColumnChart: React.FC = () => {
     xAxis: [
       {
         type: 'category',
+
+        // 隐藏X轴刻度线
+        axisTick: {
+          show: false,
+        },
+        // 隐藏X轴线
+        axisLine: {
+          show: false,
+        },
       },
     ],
     yAxis: [
       {
+        // 隐藏Y轴网格线
+        splitLine: { show: false },
+
+        // 隐藏Y轴
+        show: false,
         type: 'value',
       },
     ],
@@ -62,6 +76,14 @@ const ColumnChart: React.FC = () => {
           xAxis: [
             {
               data: list[0]?.value.map((i) => i.month),
+              // 隐藏刻度线
+              axisTick: {
+                show: false,
+              },
+              // 隐藏轴线
+              axisLine: {
+                show: false,
+              },
             },
           ],
           series: list.map((v) => {
