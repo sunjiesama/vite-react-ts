@@ -17,7 +17,7 @@ const App: React.FC = () => {
         <Header className="bg-white">
           <Head />
         </Header>
-        <Content className="relative p-4 w-full h-full">
+        <Content className="relative p-4 w-full h-full ">
           <Main />
         </Content>
       </Layout>
