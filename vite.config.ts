@@ -1,26 +1,12 @@
-import path from 'path'
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import eslintPlugin from 'vite-plugin-eslint'
-
-// https://vitejs.dev/config/
+import react from '@vitejs/plugin-react-swc'
+import {join } from 'path'
+ // https://vite.dev/config/
 export default defineConfig({
-  base: './',
-  plugins: [
-    react(),
-    eslintPlugin({
-      cache: false,
-      include: '/.(jsx?|tsx?|vue|svelte)$/',
-    }),
-  ],
+  plugins: [react()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-    },
-  },
-
-  server: {
-    port: 4001,
-    cors: true,
+      '@': join(__dirname, '/src/')
+    }
   },
 })

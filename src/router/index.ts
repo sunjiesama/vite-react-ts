@@ -1,118 +1,108 @@
-import { lazy } from 'react'
-import App from '../App'
-import NotFound from '../views/404NotFound'
+import { lazy } from "react";
+import App from "@/layout/index";
+import NotFound from "../views/404NotFound";
 
 const routes: RenderRoutes[] = [
   {
-    path: '/',
-    title: '首页',
-    component: App,
-    hidden: true,
-    icon: false,
+    path: "/",
+    meat: { title: "Immer", Icon: false, hidden: true },
+    Component: App,
     children: [
       {
-        path: '/immer',
-        title: 'Immer',
-        component: lazy(async () => await import('@/views/Immer/index')),
-        icon: 'logos:immer-icon',
-        default: true,
-      },
-      {
-        path: '/hooks',
-        title: 'Hooks',
-        icon: 'fluent-emoji-flat:hook',
-        component: lazy(async () => await import('@/views/Hooks/index')),
-      },
-      {
-        path: '/echarts',
-        title: 'Echarts',
-        icon: 'simple-icons:apacheecharts',
-        component: lazy(async () => await import('@/views/Echarts/index')),
+        path: "/echarts",
+        meat: { title: "echarts", Icon: false },
         children: [
           {
-            path: '/echarts/BarCharts',
-            title: 'Bar',
-            icon: 'material-symbols:bar-chart-rounded',
-            component: lazy(async () => await import('@/views/Echarts/BarCharts')),
-            default: true,
+            path: "/echarts/BarCharts",
+            meat: { title: "BarCharts", Icon: false },
+            Component: lazy(
+              async () => await import("@/views/Echarts/BarCharts"),
+            ),
           },
           {
-            path: '/echarts/pieCharts',
-            title: 'Pie',
-            icon: 'icon-park:pie-two',
-            component: lazy(async () => await import('@/views/Echarts/PieCharts')),
+            path: "/echarts/pieCharts",
+            meat: { title: "pieCharts", Icon: false },
+            Component: lazy(
+              async () => await import("@/views/Echarts/PieCharts"),
+            ),
           },
         ],
       },
       {
-        path: '/nested',
-        title: 'Nested',
-        icon: 'fluent:squares-nested-20-filled',
-        component: lazy(async () => await import('@/views/Nested/index')),
+        path: "/nested",
+        meat: { title: "nested", Icon: false },
+        Component: lazy(async () => await import("@/views/Nested/index")),
         children: [
           {
-            path: '/nested/nest-1',
-            title: 'nested-1',
-            icon: false,
-            component: lazy(async () => await import('@/views/Nested/Nest-1')),
+            path: "/nested/nest-1",
+            meat: { title: "nest-1", Icon: false },
+            Component: lazy(
+              async () => await import("@/views/Nested/Nest-1/index"),
+            ),
             children: [
               {
-                path: '/nested/nest-1/nest-1-1',
-                title: 'nested-1-1',
-                icon: false,
-                component: lazy(async () => await import('@/views/Nested/Nest-1/Nest-1-1')),
+                path: "/nested/nest-1/nest-1-1",
+                meat: { title: "nest-1-1", Icon: false },
+                Component: lazy(
+                  async () =>
+                    await import("@/views/Nested/Nest-1/Nest-1-1/index"),
+                ),
               },
             ],
           },
           {
-            path: '/nested/nest-2',
-            title: 'nested-2',
-            icon: false,
-            component: lazy(async () => await import('@/views/Nested/Nest-2')),
+            path: "/nested/nest-2",
+            meat: { title: "nest-2", Icon: false },
+            Component: lazy(async () => await import("@/views/Nested/Nest-2")),
           },
         ],
       },
       {
-        path: '/map',
-        title: 'map',
-        icon: 'material-symbols:map',
-        component: lazy(async () => await import('@/views/Map/index')),
+        path: "/map",
+        meat: { title: "map", Icon: false },
         children: [
           {
-            path: '/map/base-demo',
-            title: 'baseDemo',
-            icon: false,
-            component: lazy(async () => await import('@/views/Map/BaseMap')),
+            path: "/map/base-demo",
+            meat: { title: "base-demo", Icon: false },
+            Component: lazy(async () => await import("@/views/Map/BaseMap")),
           },
           {
-            path: '/map/mark-demo',
-            title: 'markDemo',
-            icon: false,
-            component: lazy(async () => await import('@/views/Map/MarkMap')),
+            path: "/map/mark-demo",
+            meat: { title: "mark-demo", Icon: false },
+            Component: lazy(async () => await import("@/views/Map/MarkMap")),
           },
         ],
       },
       {
-        path: '/three',
-        title: 'three',
-        icon: 'logos:threejs',
-        component: lazy(async () => await import('@/views/Three/index')),
+        path: "/three",
+        meat: { title: "three", Icon: false },
+        children: [
+          {
+            path: "/three/first",
+            meat: { title: "first", Icon: false },
+            Component: lazy(async () => await import("@/views/Three/index")),
+          },
+          {
+            path: "/three/cube",
+            meat: { title: "cube", Icon: false },
+            Component: lazy(
+              async () => await import("@/views/Three/components/cube"),
+            ),
+          },
+        ],
       },
       {
-        path: '/unity3D',
-        title: 'unity3D',
-        icon: 'mdi:unity',
-        component: lazy(async () => await import('@/views/Unity/index')),
+        path: "/unity3D",
+        meat: { title: "unity3D", Icon: false },
+        Component: lazy(async () => await import("@/views/Unity/index")),
       },
     ],
   },
   {
-    path: '*',
-    title: '404',
-    hidden: true,
-    icon: false,
-    component: NotFound,
+    path: "*",
+    meat: { title: "Immer", Icon: false, hidden: true },
+    Component: NotFound,
   },
-]
+];
 
-export default routes
+export default routes;

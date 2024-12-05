@@ -1,15 +1,15 @@
-import { GetBarChartData } from '@/apis/echarts'
-import { Spin } from 'antd'
-import * as echarts from 'echarts'
-import React, { useEffect, useRef, useState } from 'react'
+import { GetBarChartData } from "@/apis/echarts";
+import { Spin } from "antd";
+import * as echarts from "echarts";
+import React, { useEffect, useRef, useState } from "react";
 
 const ColumnChart: React.FC = () => {
-  const [loading, setLoading] = useState(true)
-  const echartsRef = useRef<HTMLDivElement>(null)
-  let myChart: echarts.EChartsType
+  const [loading, setLoading] = useState(true);
+  const echartsRef = useRef<HTMLDivElement>(null);
+  let myChart: echarts.EChartsType;
   const option: echarts.EChartsOption = {
     tooltip: {
-      trigger: 'axis',
+      trigger: "axis",
 
       // 坐标轴指示器配置项。
       axisPointer: {
@@ -17,30 +17,30 @@ const ColumnChart: React.FC = () => {
         // 'shadow' 阴影指示器
         // 'none' 无指示器
         // 'cross' 十字准星指示器。其实是种简写，表示启用两个正交的轴的 axisPointer。
-        type: 'cross',
+        type: "cross",
         crossStyle: {
-          color: '#999',
+          color: "#999",
         },
       },
     },
     toolbox: {
       feature: {
         dataView: { show: true, readOnly: false },
-        magicType: { show: true, type: ['line', 'bar'] },
+        magicType: { show: true, type: ["line", "bar"] },
         restore: { show: true },
         saveAsImage: { show: true },
       },
     },
     legend: {},
     grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '3%',
+      left: "3%",
+      right: "4%",
+      bottom: "3%",
       containLabel: true,
     },
     xAxis: [
       {
-        type: 'category',
+        type: "category",
 
         // 隐藏X轴刻度线
         axisTick: {
@@ -59,19 +59,19 @@ const ColumnChart: React.FC = () => {
 
         // 隐藏Y轴
         show: false,
-        type: 'value',
+        type: "value",
       },
     ],
-  }
+  };
 
   useEffect(() => {
     if (myChart === null || myChart === undefined) {
-      myChart = echarts.init(echartsRef.current as HTMLDivElement)
+      myChart = echarts.init(echartsRef.current as HTMLDivElement);
     }
-    myChart.setOption(option)
+    myChart.setOption(option);
     void GetBarChartData().then((res) => {
-      if (res.code === '200') {
-        const list = res.data ?? []
+      if (res.code === "200") {
+        const list = res.data ?? [];
         myChart.setOption({
           xAxis: [
             {
@@ -92,7 +92,7 @@ const ColumnChart: React.FC = () => {
               name: v.name,
 
               // 图表类型，设置为line时，将设置为折线图
-              type: 'bar',
+              type: "bar",
 
               // 柱子的宽度
               barWidth: 30,
@@ -104,14 +104,14 @@ const ColumnChart: React.FC = () => {
               // 'all' 堆叠所有的值，不管当前或累积的堆叠值的正负符号是什么。
               // 'positive' 只堆积正值。
               // 'negative' 只堆叠负值。
-              stackStrategy: 'samesign',
+              stackStrategy: "samesign",
 
               // 标记线
               markLine: {
                 lineStyle: {
-                  type: 'dashed',
+                  type: "dashed",
                 },
-                data: [[{ type: 'min' }, { type: 'max' }]],
+                data: [[{ type: "min" }, { type: "max" }]],
               },
               tooltip: {
                 valueFormatter: (value: number) => `${value} $`,
@@ -124,15 +124,15 @@ const ColumnChart: React.FC = () => {
                 // 'none' 不淡出其它图形，默认使用该配置。
                 // 'self' 只聚焦（不淡出）当前高亮的数据的图形。
                 // 'series' 聚焦当前高亮的数据所在的系列的所有图形。
-                focus: 'series',
+                focus: "series",
               },
               data: v.value.map((v) => v.value),
-            }
+            };
           }),
-        })
-        setLoading(false)
+        });
+        setLoading(false);
       }
-    })
+    });
 
     // const echartsResize = (): void => {
     //   if (option !== null) {
@@ -147,16 +147,19 @@ const ColumnChart: React.FC = () => {
     //     myChart.dispose()
     //   }
     // }
-  }, [])
+  }, []);
 
   return (
     <div className="w-full h-full">
       {loading && (
-        <Spin spinning={loading} className="w-full h-full absolute z-10 flex items-center bg-white/30 justify-center" />
+        <Spin
+          spinning={loading}
+          className="w-full h-full absolute z-10 flex items-center bg-white/30 justify-center"
+        />
       )}
       <div ref={echartsRef} className="w-full h-full" />
     </div>
-  )
-}
+  );
+};
 
-export default ColumnChart
+export default ColumnChart;

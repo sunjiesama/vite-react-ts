@@ -1,14 +1,11 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import routes from '@/router/index'
-import RenderRouter from '@/renderRouter'
-import { worker } from './mock/browser'
-import './index.css'
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import routes from "@/router/index";
+import { worker } from "./mock/browser";
+import RenderRouter from "@/renderRouter";
 
 if (import.meta.env.DEV) {
-  void worker.start({ onUnhandledRequest: 'bypass' })
+  void worker.start({ onUnhandledRequest: "bypass" });
 }
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>{RenderRouter(routes)}</React.StrictMode>,
-)
+createRoot(document.getElementById("root")!).render(RenderRouter(routes));
