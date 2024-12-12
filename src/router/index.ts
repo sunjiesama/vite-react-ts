@@ -80,14 +80,12 @@ const routes: RenderRoutes[] = [
           {
             path: "/three/first",
             meat: { title: "first", Icon: false },
-            Component: lazy(async () => await import("@/views/Three/index")),
+            Component: lazy(async () => await import("@/views/Three/First")),
           },
           {
-            path: "/three/cube",
-            meat: { title: "cube", Icon: false },
-            Component: lazy(
-              async () => await import("@/views/Three/components/cube"),
-            ),
+            path: "/three/second",
+            meat: { title: "second", Icon: false },
+            Component: lazy(async () => await import("@/views/Three/Second")),
           },
         ],
       },

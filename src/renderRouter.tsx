@@ -23,7 +23,7 @@ const Index = (routes: RenderRoutes[]) => {
         );
       }
       return router.children ? render(router.children) : null;
-    });
+    }) as any;
   };
   return (
     <BrowserRouter>
