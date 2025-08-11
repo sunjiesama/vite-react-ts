@@ -4,9 +4,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 const Index = (routes: RenderRoutes[]) => {
   const render = (
     R: RenderRoutes[] | undefined,
-  ): React.ReactElement[] | undefined => {
-    if (R?.length === 0) return;
-    return R?.map((router) => {
+  ): React.ReactNode => {
+    if (!R || R.length === 0) return null;
+    return R.map((router) => {
       if (router.Component) {
         return (
           <Route
@@ -23,7 +23,7 @@ const Index = (routes: RenderRoutes[]) => {
         );
       }
       return router.children ? render(router.children) : null;
-    }) as any;
+    });
   };
   return (
     <BrowserRouter>
