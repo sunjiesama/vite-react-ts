@@ -6,7 +6,7 @@ import React, { useEffect, useRef, useState } from "react";
 const ColumnChart: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const echartsRef = useRef<HTMLDivElement>(null);
-  let myChart: echarts.EChartsType;
+  const myChart = useRef<echarts.EChartsType | null>(null);
   const option: echarts.EChartsOption = {
     tooltip: {
       trigger: "axis",
@@ -65,88 +65,88 @@ const ColumnChart: React.FC = () => {
   };
 
   useEffect(() => {
-    if (myChart === null || myChart === undefined) {
-      myChart = echarts.init(echartsRef.current as HTMLDivElement);
-    }
-    myChart.setOption(option);
-    void GetBarChartData().then((res) => {
-      if (res.code === "200") {
-        const list = res.data ?? [];
-        myChart.setOption({
-          xAxis: [
-            {
-              data: list[0]?.value.map((i) => i.month),
-              // 隐藏刻度线
-              axisTick: {
-                show: false,
-              },
-              // 隐藏轴线
-              axisLine: {
-                show: false,
-              },
-            },
-          ],
-          series: list.map((v) => {
-            return {
-              // 系列名称，用于tooltip的显示，legend 的图例筛选，在 setOption 更新数据和配置项时用于指定对应的系列。
-              name: v.name,
-
-              // 图表类型，设置为line时，将设置为折线图
-              type: "bar",
-
-              // 柱子的宽度
-              barWidth: 30,
-
-              // 数据堆叠,同一名称的数据将被堆叠展示
-              stack: v.type,
-
-              // 'samesign' 只在要堆叠的值与当前累积的堆叠值具有相同的正负符号时才堆叠。
-              // 'all' 堆叠所有的值，不管当前或累积的堆叠值的正负符号是什么。
-              // 'positive' 只堆积正值。
-              // 'negative' 只堆叠负值。
-              stackStrategy: "samesign",
-
-              // 标记线
-              markLine: {
-                lineStyle: {
-                  type: "dashed",
+    if (echartsRef.current) {
+      myChart.current = echarts.init(echartsRef.current);
+      myChart.current.setOption(option);
+      void GetBarChartData().then((res) => {
+        if (res.code === "200") {
+          const list = res.data ?? [];
+          myChart.current?.setOption({
+            xAxis: [
+              {
+                data: list[0]?.value.map((i) => i.month),
+                // 隐藏刻度线
+                axisTick: {
+                  show: false,
                 },
-                data: [[{ type: "min" }, { type: "max" }]],
+                // 隐藏轴线
+                axisLine: {
+                  show: false,
+                },
               },
-              tooltip: {
-                valueFormatter: (value: number) => `${value} $`,
-              },
-              // 高亮的图形样式和标签样式
-              emphasis: {
-                // 开启高亮状态可以在鼠标移到图形上时，tooltip 触发时，或者图例联动的时，触发高亮效果
-                disabled: false,
+            ],
+            series: list.map((v) => {
+              return {
+                // 系列名称，用于tooltip的显示，legend 的图例筛选，在 setOption 更新数据和配置项时用于指定对应的系列。
+                name: v.name,
 
-                // 'none' 不淡出其它图形，默认使用该配置。
-                // 'self' 只聚焦（不淡出）当前高亮的数据的图形。
-                // 'series' 聚焦当前高亮的数据所在的系列的所有图形。
-                focus: "series",
-              },
-              data: v.value.map((v) => v.value),
-            };
-          }),
-        });
-        setLoading(false);
-      }
-    });
+                // 图表类型，设置为line时，将设置为折线图
+                type: "bar",
 
-    // const echartsResize = (): void => {
-    //   if (option !== null) {
-    //     myChart.resize()
-    //   }
-    // }
-    // window.addEventListener('resize', echartsResize, false)
-    //
-    // return () => {
-    //   window.removeEventListener('resize', echartsResize)
-    //   if (myChart !== null) {
-    //     myChart.dispose()
-    //   }
-    // }
+                // 柱子的宽度
+                barWidth: 30,
+
+                // 数据堆叠,同一名称的数据将被堆叠展示
+                stack: v.type,
+
+                // 'samesign' 只在要堆叠的值与当前累积的堆叠值具有相同的正负符号时才堆叠。
+                // 'all' 堆叠所有的值，不管当前或累积的堆叠值的正负符号是什么。
+                // 'positive' 只堆积正值。
+                // 'negative' 只堆叠负值。
+                stackStrategy: "samesign",
+
+                // 标记线
+                markLine: {
+                  lineStyle: {
+                    type: "dashed",
+                  },
+                  data: [[{ type: "min" }, { type: "max" }]],
+                },
+                tooltip: {
+                  valueFormatter: (value: number) => `${value} $`,
+                },
+                // 高亮的图形样式和标签样式
+                emphasis: {
+                  // 开启高亮状态可以在鼠标移到图形上时，tooltip 触发时，或者图例联动的时，触发高亮效果
+                  disabled: false,
+
+                  // 'none' 不淡出其它图形，默认使用该配置。
+                  // 'self' 只聚焦（不淡出）当前高亮的数据的图形。
+                  // 'series' 聚焦当前高亮的数据所在的系列的所有图形。
+                  focus: "series",
+                },
+                data: v.value.map((v) => v.value),
+              };
+            }),
+          });
+          setLoading(false);
+        }
+      });
+
+      // const echartsResize = (): void => {
+      //   if (option !== null) {
+      //     myChart.resize()
+      //   }
+      // }
+      // window.addEventListener('resize', echartsResize, false)
+      //
+      // return () => {
+      //   window.removeEventListener('resize', echartsResize)
+      //   if (myChart !== null) {
+      //     myChart.dispose()
+      //   }
+      // }
+    }
   }, []);
 
   return (
